@@ -1,0 +1,22 @@
+.newAnuncioPage {
+  display: flex;
+  padding: 10px 15px 0 15px;
+}
+
+.newAnuncioPage-textarea {
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(230, 236, 240);
+}
+
+.newAnuncioPage-footer {
+  align-items: center;
+  display: flex;
+}
+
+.newAnuncioPage-characters {
+  color: rgb(29, 161, 242);
+}
+
+.newAnuncioPage-submit {
+  margin-left: auto;
+}
