@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 const accentColor = 'rgb(29, 161, 242)';
+
 const Button = styled.button`
   align-items: center;
   background-color: ${props =>
@@ -22,6 +24,7 @@ const Button = styled.button`
   pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
   text-decoration: none;
   transition: background-color 0.2s;
+
   &:hover {
     background-color: ${props =>
       props.variant === 'primary'
@@ -29,5 +32,7 @@ const Button = styled.button`
         : 'rgba(29, 161, 242, 0.1)'};
   }
 `;
-const ButtonPrimary = props => <Button variant="primary" {...props} />;
+
+// const ButtonPrimary = props => <Button variant="primary" {...props} />;
+
 export default Button;
