@@ -4,6 +4,7 @@ import { login } from '../service';
 import { FormField } from '../../commons'
 import "./LoginPage.css"
 import { AuthContextConsumer } from "../context";
+import T from 'prop-types';
 
 
 function LoginPage({onLogin, history, location}) {
@@ -69,6 +70,10 @@ function LoginPage({onLogin, history, location}) {
         {error && <div onClick={resetError} className="loginPage-error">{error.message }</div>}
     </div>
 };
+
+LoginPage.propTypes = {
+    onLogin:T.func.isRequired
+}
 
 const ConnectedLoginPage = (props) => (
     
