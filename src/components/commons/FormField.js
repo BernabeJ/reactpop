@@ -8,7 +8,6 @@ function FormField({ className, label, autofocus, ...props }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    // set focus
     if (autofocus) {
       ref.current.focus();
     }

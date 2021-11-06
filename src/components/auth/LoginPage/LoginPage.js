@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { login } from '../service';
 import { FormField } from '../../commons'
 import "./LoginPage.css"
+import { AuthContextConsumer } from "../context";
 
 
-function LoginPage({onLogin}) {
+function LoginPage({onLogin, history, location}) {
 
     const [value, setValue] = useState({ username: '', password: '' });
     const [error, setError] = useState(null);
@@ -27,13 +28,15 @@ function LoginPage({onLogin}) {
         resetError();
         try {
             await login(value);
+            setIsLoading(false)
             onLogin();
+            const{from}  = location.state || {from:{pathname:'/'}}
+            history.replace(from)
             
         } catch (error) {
             setError(error);
-        } finally {
             setIsLoading(false)
-        }
+        } 
 
     }
 
@@ -46,7 +49,9 @@ function LoginPage({onLogin}) {
                 label="phone, email or username"
                 className = "loginForm-field"
                 value={value.username}
-                onChange={handleChange} />
+                onChange={handleChange}
+                autofocus
+            />
             <FormField
                 type="password"
                 name="password"
@@ -64,4 +69,13 @@ function LoginPage({onLogin}) {
         {error && <div onClick={resetError} className="loginPage-error">{error.message }</div>}
     </div>
 };
-export default LoginPage;
+
+const ConnectedLoginPage = (props) => (
+    
+    <AuthContextConsumer>
+        {auth => <LoginPage onLogin={auth.handleLogin} {...props} />}
+    </AuthContextConsumer>
+);
+
+export default ConnectedLoginPage;
+
